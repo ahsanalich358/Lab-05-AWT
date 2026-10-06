@@ -1,0 +1,35 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> security-gateway@1.0.0 test
+> node --test --test-concurrency=1
+
+✔ bcrypt salted hashes only; identical demo passwords produce tenant-independent verification (3576.851521ms)
+✔ login issues 15 minute JWT and secure strict httpOnly cookie, never refresh in JSON (414.534402ms)
+✔ all three roles access profile; missing, tampered and expired JWT rejected (1153.327722ms)
+✔ Employee cannot approve payroll; Manager can; approval requires real tenant record (794.407014ms)
+✔ SuperAdmin can approve, but cannot access another tenant payroll (845.312941ms)
+✔ only SuperAdmin deletes; scoped delete invalidates deleted user session (2187.378659ms)
+✔ rotation changes cookie; old token replay revokes whole family including access (389.130618ms)
+✔ concurrent refresh requests cannot both succeed (361.678381ms)
+✔ logout revokes refresh and already-issued access credentials (440.910863ms)
+✔ refresh expiry rejected (458.941987ms)
+✔ five failures lock account; correct password still blocked; window expiration unlocks (3160.511105ms)
+✔ input schemas reject role escalation, NoSQL objects, XSS names and unsafe query keys (17.440496ms)
+✔ new users receive Employee; cannot register into existing tenant (964.759525ms)
+✔ strict CORS, CSRF and Helmet headers (14.31908ms)
+✔ OAuth callback verifies browser-bound state before provider exchange (8.898346ms)
+✔ OAuth mocked provider flow uses PKCE, verified email, no email auto-link and one-time state (539.348335ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15701.184148
+
+Additional local HTTPS smoke test: PASS — health, seeded login, profile, rotation, logout, immediate access revocation.
+Visual browser test: NOT COMPLETED — browser executable unavailable and download failed.
+Real GitHub OAuth: NOT RUN — no provider credentials supplied; provider flow covered with mocked responses.
+Public deployment: NOT CREATED.
+Public GitHub repository: NOT CREATED.
