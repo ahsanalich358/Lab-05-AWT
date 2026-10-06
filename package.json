@@ -1,0 +1,36 @@
+{
+  "name": "security-gateway",
+  "version": "1.0.0",
+  "description": "CSC337 Lab 05: tenant-isolated hybrid authentication gateway",
+  "scripts": {
+    "start": "node src/server.js",
+    "setup": "node scripts/setup.js",
+    "test": "node --test --test-concurrency=1",
+    "check": "node --check src/app.js && node --check public/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^13.0.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.5",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "supertest": "^7.3.1"
+  },
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "allowScripts": {
+    "better-sqlite3@13.0.3": true
+  }
+}
