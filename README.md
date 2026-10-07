@@ -1,4 +1,4 @@
-# CSC337 Lab 05 — Enterprise Multi-Tenant Security Gateway
+# CSC337 Lab 05 — Enterprise Multi-Tenant Security Gateway by Ahsan Ali (SP24-BSE-004)
 
 A complete, runnable teaching implementation of hybrid authentication, rotating refresh credentials, tenant-scoped RBAC and OWASP defenses. The responsive Sentinel dashboard and Express API are served from the same HTTPS origin.
 
@@ -58,8 +58,16 @@ Use public sample accounts only with synthetic lab data. Before real deployment 
 6. For deployment, create a separate OAuth app or change the callback and homepage to the exact live HTTPS origin.
 
 The flow uses PKCE S256, a browser-bound one-time state cookie, verified primary email, and GitHub's immutable user ID. GitHub users receive an isolated Employee workspace. Local and GitHub accounts are **not automatically linked by email**, preventing account takeover. Existing GitHub profiles are synchronized on subsequent sign-ins without replacing their role or tenant.
+# Output
 
-The short-lived OAuth state cookie uses `SameSite=Lax` because the GitHub callback is a cross-site top-level navigation. The **refresh cookie always remains `SameSite=Strict`**, exactly as required. The callback sets the refresh cookie and redirects to the dashboard; the dashboard makes a same-origin refresh request to obtain its access token. No tokens are placed in URLs or localStorage.
+<img width="904" height="439" alt="git" src="https://github.com/user-attachments/assets/fecd3509-acf4-45fa-b323-0ebccac59fad" />
+
+<img width="671" height="433" alt="hub" src="https://github.com/user-attachments/assets/d1f0ac9b-f58d-4861-b4e1-4e7d67b2b023" />
+
+<img width="661" height="367" alt="repo" src="https://github.com/user-attachments/assets/2e8eeebd-1624-4480-9f7f-47f5c74d68a4" />
+
+<img width="704" height="145" alt="abcfd" src="https://github.com/user-attachments/assets/057464dd-54f8-42de-a8bb-f1834ba8b3ce" />
+
 
 ## 5. API contract
 
@@ -119,8 +127,7 @@ The frontend coalesces refresh calls within one tab. Simultaneous refresh from d
 - Exact-origin CORS, strict refresh cookies, JSON-only mutations and cross-site Fetch Metadata checks protect cookie mutation routes from browser CSRF. Origin-less Postman requests are allowed; CORS is not API authentication.
 - Helmet security headers, no credential response caching, bounded JSON bodies, no tokens in URLs, generic authentication errors.
 - Audit events contain no passwords, refresh credentials or provider tokens.
-- SQLite persistence is suitable for this single-instance lab. Real enterprise rollout additionally needs external review, monitoring, recovery drills, email ownership verification, MFA, invitations, operational key rotation and shared storage for scaling.
-
+- SQLite persistence is suitable for this single-instance lab. 
 ## 9. Deploy on Render with HTTPS
 
 This package includes `render.yaml`. **It selects a paid Starter web service with a persistent disk. Review Render's pricing before creating it.** Render's free ephemeral filesystem is not suitable for this SQLite deployment because it loses sessions/users across restarts or redeploys. A free serverless/Vercel deployment is not a drop-in target for this project; migrate storage to managed PostgreSQL first if choosing that approach.
@@ -161,20 +168,23 @@ git push -u origin main
 
 Create the empty repository in GitHub first. Do not pre-create a remote README if following these commands. Authenticate using GitHub's normal credential manager; never paste a personal token into source code.
 
-## 10. Evidence and submission
+## Outputs:
 
-- Run `npm test`; test code is in `test/security.test.js`.
-- Automated coverage: bcrypt, access expiry, cookie attributes, refresh hash storage, all required role gates, cross-tenant authorization, deleted-user revocation, rotation/replay/concurrency, logout, expiry, lockout, validation, CORS/CSRF/Helmet and simulated GitHub OAuth/PKCE.
-- `docs/TEST_RESULTS.txt` records the actual local test run shipped with this package.
-- Real OAuth and public HTTPS deployment were **not** exercised during package creation.
-- Import `docs/Lab05.postman_collection.json` and follow `docs/VIVA_AND_POSTMAN.md`.
-- Fill `docs/SUBMISSION_CHECKLIST.md` only after verifying your actual deployment.
+<img width="611" height="416" alt="58" src="https://github.com/user-attachments/assets/e06751c1-2fc1-4267-bd59-30b8158d84ed" />
 
-The assignment text says public repositories are required, while one form line mentions sharing a private repository with an email address. These conflict. Prefer the explicit public-repository requirement and ask the instructor whether they additionally require a collaborator. No invitation has been sent.
+<img width="611" height="416" alt="57" src="https://github.com/user-attachments/assets/1d5a06c5-f87b-4595-937e-b851f94e9d33" />
 
-## References
+<img width="613" height="417" alt="56" src="https://github.com/user-attachments/assets/253a8378-1075-4aa2-81b7-6358f8b1f29f" />
 
-- https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps
-- https://expressjs.com/en/advanced/best-practice-security.html
-- https://github.com/helmetjs/helmet
-- https://render.com/docs/disks
+<img width="596" height="416" alt="55" src="https://github.com/user-attachments/assets/6128f6f6-d78d-43a1-963d-b8d9deca57b2" />
+
+<img width="623" height="354" alt="54" src="https://github.com/user-attachments/assets/d2866d4a-d553-40fc-80ce-6ef64010aa24" />
+
+<img width="593" height="413" alt="53" src="https://github.com/user-attachments/assets/d2baff52-e9e7-452d-8f4b-3f31328e0d89" />
+
+<img width="663" height="378" alt="52" src="https://github.com/user-attachments/assets/19a322c8-aa2d-4e9f-aa7b-ca5746cbcb44" />
+
+<img width="679" height="416" alt="51" src="https://github.com/user-attachments/assets/c4a11c6e-8e6b-4b69-88ae-49da02efaa02" />
+
+
+
